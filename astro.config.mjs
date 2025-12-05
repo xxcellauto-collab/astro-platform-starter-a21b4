@@ -2,16 +2,23 @@ import { defineConfig } from 'astro/config';
 import netlify from '@astrojs/netlify';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap'; // ⬅️ ADD THIS
 
-// https://astro.build/config
 export default defineConfig({
-    vite: {
-        plugins: [tailwindcss()]
-    },
-    integrations: [react()],
-    adapter: netlify({
-        devFeatures: {
-            environmentVariables: true
-        }
-    })
+  site: 'https://njtowtruckservice.com', // ⬅️ REQUIRED FOR SITEMAP
+
+  vite: {
+    plugins: [tailwindcss()]
+  },
+
+  integrations: [
+    react(),
+    sitemap() // ⬅️ ADD THIS
+  ],
+
+  adapter: netlify({
+    devFeatures: {
+      environmentVariables: true
+    }
+  })
 });
